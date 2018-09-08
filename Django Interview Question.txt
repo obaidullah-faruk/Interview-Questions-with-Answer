@@ -1,0 +1,288 @@
+#Q1. Discuss the Django architecture.
+
+Ans. The developer provides the Model, the view and the template then just maps it to a URL and Django does the magic to serve it to the user.
+It follows the MTV (Model template view pattern).
+
+
+
+
+#Q2. Explain how you can set up the Database in Django.
+
+Ans: You can use the command edit mysite/setting.py , it is a normal python module with module level representing Django settings.
+
+Django uses SQLite by default; it is easy for Django users as such it won’t require any other type of installation. 
+In the case your database choice is different that you have to the following keys in the DATABASE ‘default’ item to match your database connection settings.
+
+Engines: you can change database by using ‘django.db.backends.sqlite3’ , ‘django.db.backeneds.mysql’, ‘django.db.backends.postgresql_psycopg2’,
+‘django.db.backends.oracle’ and so on
+Name: The name of your database. In the case if you are using SQLite as your database, in that case database will be a file on your computer, 
+Name should be a full absolute path, including file name of that file.
+If you are not choosing SQLite as your database then settings like Password, Host, User, etc. must be added.
+Django uses SQLite as default database, it stores data as a single file in the filesystem. If you do have a database server—PostgreSQL, MySQL,
+Oracle, MSSQL—and want to use it rather than SQLite, then use your database’s administration tools to create a new database for your Django project. 
+Either way, with your (empty) database in place, all that remains is to tell Django how to use it. This is where your project’s settings.py file comes in.
+
+We will add the following lines of code to the setting.py file:
+
+DATABASES = {
+     'default': {
+          'ENGINE' : 'django.db.backends.sqlite3',
+          'NAME' : os.path.join(BASE_DIR, 'db.sqlite3'),
+     }
+}
+ 
+
+
+
+
+#Q3. Give an example how you can write a VIEW in Django?
+
+Ans: This is how we can use write a view in Django:
+
+from django.http import HttpResponse
+import datetime
+
+def Current_datetime(request):
+     now = datetime.datetime.now()
+     html = "<html><body>It is now %s</body></html>" % now
+     return HttpResponse(html)
+
+
+
+Returns the current date and time, as an HTML document
+
+
+
+
+
+#Q4.  Mention what the Django templates consists of.
+
+Ans: The template is a simple text file.  It can create any text-based format like XML, CSV, HTML, etc. 
+A template contains variables that get replaced with values when the template is evaluated and tags (% tag %) 
+that controls the logic of the template.
+
+
+
+
+
+#Q5. Explain the use of session in Django framework?
+
+Ans: Django provides session that lets you store and retrieve data on a per-site-visitor basis.
+Django abstracts the process of sending and receiving cookies, by placing a session ID cookie on the client side, 
+and storing all the related data on the server side.
+So the data itself is not stored client side. This is nice from a security perspective.
+
+
+
+
+
+#Q6. List out the inheritance styles in Django.
+
+Ans: In Django, there is three possible inheritance styles.
+
+i.   Abstract Base Classes: This style is used when you only wants parent’s class to hold information that you don’t want to type out for each child model.
+ii.  Multi-table Inheritance: This style is used If you are sub-classing an existing model and need each model to have its own database table.
+iii. Proxy models: You can use this model, If you only want to modify the Python level behavior of the model, without changing the model’s fields.
+
+
+
+
+
+#Q7. How will you define Django ?
+
+Ans: Django is a web framework in python to develop a web application in python. Django is a free and open source web application framework, 
+written in Python. Django makes easier to build better web applications quickly and with less code.
+
+
+
+
+#Q8. Mention what are the features available in Django?
+
+Ans: Features available in Django are-
+
+Admin Interface (CRUD)
+Templating
+Form handling
+Internationalization
+Session, user management, role-based permissions
+Object-relational mapping (ORM)
+Testing Framework
+Fantastic Documentation
+Security features
+
+
+
+
+#Q9. Mention the architecture of Django architecture?
+
+Ans: Django architecture consists of-
+
+Models: It describes your database schema and your data structure
+Views: It controls what a user sees, the view retrieves data from appropriate models and execute any calculation made to the data and pass it to the template
+Templates: It determines how the user sees it. It describes how the data received from the views should be changed or formatted for display on the page
+Controller: The Django framework and URL parsing
+
+
+
+
+#Q10. Why Django should be used for web-development?
+
+Ans: It allows you to divide code modules into logical groups to make it flexible to change
+To ease the website administration, it provides auto-generated web admin
+It provides pre-packaged API for common user tasks
+It gives you template system to define HTML template for your web page to avoid code duplication
+It enables you to define what URL be for a given function
+It enables you to separate business logic from the HTML
+Everything is in python
+
+
+
+
+#Q11. Explain how you can setup static files in Django?
+
+Ans: There are three main things required to set up static files in Django
+
+Set STATIC_ROOT in settings.py
+run manage.py collectsatic
+set up a Static Files entry on the PythonAnywhere web tab
+
+
+
+
+#Q12. Explain how you can use file based sessions?
+
+Ans: To use file based session you have to set the SESSION_ENGINE settings to “django.contrib.sessions.backends.file”
+
+
+
+
+#Q13. Explain the migration in Django and how you can do in SQL?
+
+Migration in Django is to make changes to your models like deleting a model, adding a field, etc. into your database schema.  
+There are several commands you use to interact with migrations.
+
+Migrate
+Makemigrations
+Sqlmigrate
+To do the migration in SQL, you have to print the SQL statement for resetting sequences for a given app name.
+
+django-admin.py sqlsequencreset
+
+Use this command to generate SQL that will fix cases where a sequence is out sync with its automatically incremented field data.
+
+
+
+
+
+#Q14. Mention what command line can be used to load data into Django?
+
+Ans: To load data into Django you have to use the command line Django-admin.py loaddata. 
+The command line will searches the data and loads the contents of the named fixtures into the database.
+
+
+
+
+
+#Q15.Explain what does django-admin.py makemessages command is used for?
+
+This command line executes over the entire source tree of the current directory and abstracts all the strings marked for translation.  
+It makes a message file in the locale directory.
+
+
+
+
+
+#Q16. Mention what does the Django field class types?
+
+Ans: Field class types determines -
+The database column type
+The default HTML widget to avail while rendering a form field
+The minimal validation requirements used in Django admin and in automatically generated forms
+
+
+
+
+
+
+#Q17. What is the usage of middlewares in Django?
+
+Ans:
+Below are the usage of middlewares in Django-
+•Session management
+•Cross-site request forgery protection
+•Use authentication
+•Content Gzipping
+
+
+
+
+
+
+#Q18. What are the roles of receiver and sender in signals?
+
+Ans: The roles of receiver and sender in signals are-
+Receiver: It specifies the callback function which will be connected to the signal.
+Sender: It specifies a particular sender to receive a signal from.
+
+
+
+
+#Q19. Is Django Stable?
+
+Ans: Yes, Django is quite stable. Many companies like Disqus, Instagram, Pinterest, and Mozilla have been using Django for many years.
+
+
+
+
+
+#Q20.  Mention Caching Strategies That You Know In Django?
+
+Ans: Few caching strategies that are available in Django are as follows:-
+
+File sytem caching
+In-memory caching
+Using Memcached
+Database caching
+
+
+
+
+
+#Q21. Is Django a content management system (CMS)?
+
+Ans: No, Django is not a CMS. Instead, it is a Web framework and a programming tool that makes you able to build websites.
+
+
+
+
+
+#Q22. What is the usage of Django-admin.py and manage.py?
+
+Ans: Django-admin.py: It is a Django's command line utility for administrative tasks.
+
+Manage.py: It is an automatically created file in each Django project. It is a thin wrapper around the Django-admin.py. It has the following usage:
+
+It puts your project's package on sys.path.
+It sets the DJANGO_SETTING_MODULE environment variable to points to your project's setting.py file.
+
+
+
+
+#Q23. What are the signals in Django?
+
+Ans: Signals are pieces of code which contain information about what is happening. 
+A dispatcher is used to sending the signals and listen for those signals.
+
+
+
+
+
+#Q24. What is the role of Cookie in Django?
+
+Ans: A cookie is a small piece of information which is stored in the client browser. 
+It is used to store user's data in a file permanently (or for the specified time).
+Cookie has its expiry date and time and removes automatically when gets expire. Django provides built-in methods to set and fetch cookie.
+
+The set_cookie() method is used to set a cookie and get() method is used to get the cookie.
+
+The request.COOKIES['key'] array can also be used to get cookie values.
